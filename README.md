@@ -6,8 +6,7 @@ BI Essentials for Finance Analysts:
 - SQL
 
 
-SELECT 
-    --Sales and promo summary from Internet Sales
+	SELECT 
     fs.SalesOrderNumber AS InvoiceNumber,
     fs.SalesOrderLineNumber AS InvoiceLineNumber,
     fs.OrderDate AS OrderDate,
@@ -35,7 +34,7 @@ SELECT
 
     'Web' AS Source
  
-FROM FactInternetSales AS fs
+	FROM FactInternetSales AS fs
     INNER JOIN DimProduct AS dp
     ON fs.ProductKey=dp.ProductKey
     INNER JOIN DimProductSubcategory AS dpsc
@@ -49,14 +48,14 @@ FROM FactInternetSales AS fs
     INNER JOIN DimCurrency AS dcy
     On fs.CurrencyKey=dcy.CurrencyKey
  
-WHERE YEAR(fs.OrderDate) IN (2012,2013)
+	WHERE YEAR(fs.OrderDate) IN (2012,2013)
 
 
 
 UNION
 
 
-SELECT 
+	SELECT 
     --Sales and promo summary from Reseller sales
     fs.SalesOrderNumber AS InvoiceNumber,
     fs.SalesOrderLineNumber AS InvoiceLineNumber,
@@ -84,7 +83,7 @@ SELECT
 
     dr.ResellerName AS Source
  
-FROM FactResellerSales AS fs
+	FROM FactResellerSales AS fs
     INNER JOIN DimProduct AS dp
     ON fs.ProductKey=dp.ProductKey
     INNER JOIN DimProductSubcategory AS dpsc
@@ -99,10 +98,8 @@ FROM FactResellerSales AS fs
     On fs.CurrencyKey=dcy.CurrencyKey
     INNER JOIN DimReseller AS dr
     ON fs.ResellerKey = dr.ResellerKey
- 
-WHERE YEAR(fs.OrderDate) IN (2012,2013)
-
-ORDER BY OrderDate DESC
+	WHERE YEAR(fs.OrderDate) IN (2012,2013)
+	ORDER BY OrderDate DESC
 
 
 
